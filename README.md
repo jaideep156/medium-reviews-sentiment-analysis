@@ -109,4 +109,14 @@ Start the server
 ```bash
   streamlit run app.py
 ```
+### OR 
 
+simply run these two lines of code in your command line:
+```bash
+  pip install -r requirements.txt
+```
+
+```bash
+  python main.py
+```
+`main.py` contains the whole code. The data will be fetched, preprocessed, model will be built (with the best parameters shown above) and the sentiment of the text you enter in the file will be predicted.

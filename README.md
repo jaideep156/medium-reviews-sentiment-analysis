@@ -96,7 +96,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd medium-reviews-sentiment-analysis
 ```
 
 Install dependencies
@@ -111,11 +111,21 @@ Start the server
   streamlit run app.py
 ```
 ### OR 
-simply run these two lines of code in your command line:
+Clone the project
+
+```bash
+  git clone https://github.com/jaideep156/medium-reviews-sentiment-analysis.git
+```
+Go to the project directory
+
+```bash
+  cd medium-reviews-sentiment-analysis
+```
+Install dependencies
 ```bash
   pip install -r requirements.txt
 ```
-
+and finally,
 ```bash
   python main.py
 ```
@@ -124,6 +134,22 @@ simply run these two lines of code in your command line:
 ### OR 
 If you don't want to rebuild the model everytime after each input,
 run this line of code in your command line AFTER building the best model from `notebook/sentiment-analysis.ipynb` and save it as `steps.pkl`:
+
+Clone the project
+
+```bash
+  git clone https://github.com/jaideep156/medium-reviews-sentiment-analysis.git
+```
+Go to the project directory
+
+```bash
+  cd medium-reviews-sentiment-analysis
+```
+Install dependencies
+```bash
+  pip install -r requirements.txt
+```
+and finally,
 ```bash
   python src/model_loader.py
 ```

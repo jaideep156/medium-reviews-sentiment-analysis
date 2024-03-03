@@ -1,4 +1,4 @@
-from data_ingestion import read_data
+from src.data_ingestion import read_data
 import re
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize

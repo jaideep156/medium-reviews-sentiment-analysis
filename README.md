@@ -84,7 +84,7 @@ joblib.dump(data, 'steps.pkl')
 
 ```
 
-You will not be able to see `steps.pkl` in the repository since it is a very large file and I mentioned it in `.gitignore`
+You will NOT be able to see `steps.pkl` in the repository since it is a very large file and I've mentioned it in `.gitignore`
 ## Run Locally
 
 Clone the project
@@ -111,14 +111,6 @@ Start the server
   streamlit run app.py
 ```
 ### OR 
-If you don't want to rebuild the model everytime after each input,
-run this line of code in your command line:
-```bash
-  python src/model_loader.py
-```
-This loads the pre-existing best random forest model from `notebooks/steps.pkl` and carries out the predictions
-
-### OR 
 simply run these two lines of code in your command line:
 ```bash
   pip install -r requirements.txt
@@ -128,3 +120,11 @@ simply run these two lines of code in your command line:
   python main.py
 ```
 `main.py` contains the whole code. The data will be fetched, preprocessed, model will be built (with the best parameters shown above) and the sentiment of the text you enter in the `main.py` will be predicted.
+
+### OR 
+If you don't want to rebuild the model everytime after each input,
+run this line of code in your command line AFTER building the best model from `notebook/sentiment-analysis.ipynb` and save it as `steps.pkl`:
+```bash
+  python src/model_loader.py
+```
+This loads the pre-existing best random forest model from `notebooks/steps.pkl` and carries out the predictions.

@@ -10,6 +10,13 @@ best_model = data["best_model"]
 label_encoder = data["le"]
 vectorizer = data["vectorizer"]
 
+def is_numeric(input_str):
+    try:
+        float(input_str)
+        return True
+    except ValueError:
+        return False
+
 def show_predict_page():
     st.title("Medium App Reviews Sentiment Analysis")
 
@@ -21,10 +28,17 @@ def show_predict_page():
     ok = st.button("Submit")
 
     if ok:
-        input_data = vectorizer.transform([text])
-        predictions = best_model.predict(input_data)
-        predicted_sentiments = label_encoder.inverse_transform(predictions)
+        # Check if input is blank
+        if text.strip() == "":
+            st.error("Please enter some text to predict its sentiment.")
+        # Check if input is numeric
+        elif is_numeric(text):
+            st.error("Please enter text instead of numeric value.")
+        else:
+            input_data = vectorizer.transform([text])
+            predictions = best_model.predict(input_data)
+            predicted_sentiments = label_encoder.inverse_transform(predictions)
 
-        st.write('The predicted sentiment of the above review is:',predicted_sentiments[0].lower())
+            st.success(f"The predicted sentiment of the review is {predicted_sentiments[0].lower()}.")
 
     st.write("##### You can find the full codebase & project specifics on my [GitHub](https://github.com/jaideep156/medium-reviews-sentiment-analysis).")

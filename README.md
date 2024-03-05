@@ -80,11 +80,11 @@ data =
     "vectorizer": vectorizer
 }
 
-joblib.dump(data, 'steps.pkl')
+with gzip.open('model_steps.pkl.gz', 'wb') as file:
+    pickle.dump(data, file)
 
 ```
 
-You will NOT be able to see `steps.pkl` in the repository since it is a very large file and I've mentioned it in `.gitignore`
 ## Run Locally
 
 Clone the project
@@ -133,7 +133,7 @@ and finally,
 
 ### OR 
 If you don't want to rebuild the model everytime after each input,
-run this line of code in your command line AFTER building the best model from `notebook/sentiment-analysis.ipynb` and save it as `steps.pkl`:
+run this line of code in your command line AFTER building the best model from `notebook/sentiment-analysis.ipynb` and save it as `model_steps.pkl.gz`:
 
 Clone the project
 
@@ -153,4 +153,4 @@ and finally,
 ```bash
   python src/model_loader.py
 ```
-This loads the pre-existing best random forest model from `notebooks/steps.pkl` and carries out the predictions.
+This loads the pre-existing best random forest model from `notebooks/model_steps.pkl.gz` and carries out the predictions.

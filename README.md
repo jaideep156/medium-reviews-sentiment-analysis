@@ -2,6 +2,8 @@
 
 This project embarks on a journey to analyze sentiment patterns within [Medium](https://play.google.com/store/apps/details?id=com.medium.reader) app reviews from Google Play Store using natural language processing (NLP) techniques and machine learning algorithms. 
 
+## To access the live version of the app, click [here](https://medium-sentiment-analysis.streamlit.app/).
+
 ## Data
 The dataset and the complete data dictionary can be found on [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/).
 ## Dependencies
@@ -11,7 +13,7 @@ The dataset and the complete data dictionary can be found on [Kaggle](https://ww
 - [matplotlib](https://matplotlib.org/) for visualizations.
 - [NLTK](https://www.nltk.org/) for NLP tasks like tokenizations, removing stop words, etc. 
 - [imblearn](https://imbalanced-learn.org/stable/install.html) to handle class imbalance.
-- [streamlit](https://streamlit.io/) to host the app. 
+- [streamlit cloud](https://streamlit.io/cloud) to deploy the app. 
 
 I am specifically using ```scikit-learn``` version ```1.2.2``` in this project due to a bug which is discussed [here](https://discuss.streamlit.io/t/valueerror-node-array-from-the-pickle-has-an-incompatible-dtype/46682/6).
 
@@ -20,7 +22,7 @@ I am specifically using ```scikit-learn``` version ```1.2.2``` in this project d
 The data is first fetched from [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/) and then we remove irrelevant columns ```reviewId```, ```repliedAt```, etc. You can follow the [Jupyter Notebook](https://github.com/jaideep156/medium-reviews-sentiment-analysis/blob/main/notebook/sentiment-analysis.ipynb) for a detailed walkthrough.
 
 ### Defining the pipeline
-Data acquisition -> Preprocessing -> Train-Test split -> Model building -> Hyperparameter tuning the model.
+Data acquisition -> Preprocessing -> Train-Test split -> Model building -> Hyperparameter tuning the model -> Saving the model -> Predicting new data using the saved model.
 
 ### Preprocessing
 After basic exploratory data analysis steps like checking null values and data types of the columns, there is a huge class imbalance in the `sentiment` column with `POSITIVE` having `39982`, `NEGATIVE` having `5863` & `NEUTRAL` having `7198` values.
@@ -70,7 +72,7 @@ Accuracy = 0.79
 
 ### Saving the model
 
-Finally, we save the `model`, `label_encoder`, and `vectorizer` using `joblib` as follows:
+Finally, we save the `best_rf_model`, `label_encoder`, & `vectorizer` as [`model_steps.pkl.gz`](https://github.com/jaideep156/medium-reviews-sentiment-analysis/blob/main/notebook/model_steps.pkl.gz) using `pickle` and `gzip` since it is a large file:
 
 ```
 data = 
@@ -129,11 +131,11 @@ and finally,
 ```bash
   python main.py
 ```
-`main.py` contains the whole code. The data will be fetched, preprocessed, model will be built (with the best parameters shown above) and the sentiment of the text you enter in the `main.py` will be predicted.
+[`main.py`](https://github.com/jaideep156/medium-reviews-sentiment-analysis/blob/main/main.py) contains the whole code. The data will be fetched, preprocessed, model will be built (with the best parameters shown above) and the sentiment of the text you enter in the `main.py` will be predicted.
 
 ### OR 
 If you don't want to rebuild the model everytime after each input,
-run this line of code in your command line AFTER building the best model from `notebook/sentiment-analysis.ipynb` and save it as `model_steps.pkl.gz`:
+follow this process in your command line AFTER building the best model from [`notebook/sentiment-analysis.ipynb`](https://github.com/jaideep156/medium-reviews-sentiment-analysis/blob/main/notebook/sentiment-analysis.ipynb) and save it as `model_steps.pkl.gz`:
 
 Clone the project
 
@@ -154,3 +156,8 @@ and finally,
   python src/model_loader.py
 ```
 This loads the pre-existing best random forest model from `notebooks/model_steps.pkl.gz` and carries out the predictions.
+
+## Deployment
+This code has been deployed using [Streamlit Community Cloud](https://streamlit.io/cloud) and the file is [`app.py`](https://github.com/jaideep156/medium-reviews-sentiment-analysis/blob/main/app.py)
+
+To run the project locally, follow [these](https://github.com/jaideep156/medium-reviews-sentiment-analysis?tab=readme-ov-file#run-locally) steps as mentioned above.

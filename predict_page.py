@@ -1,10 +1,15 @@
 import streamlit as st
-import joblib
+import pickle
+import gzip
 import warnings
 warnings.filterwarnings("ignore")
 
-#loading the steps file where model, label encoder and TF-IDF Vectorizer are stored
-data = joblib.load('notebook\steps.pkl')
+#loading the model_steps file where model, label encoder and TF-IDF Vectorizer are stored
+def load_model():
+    with gzip.open(r'notebook/model_steps.pkl.gz', 'rb') as file:
+        data = pickle.load(file)
+    return data
+data = load_model()
 
 best_model = data["best_model"]
 label_encoder = data["le"]

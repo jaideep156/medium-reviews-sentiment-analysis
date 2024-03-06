@@ -25,9 +25,9 @@ def is_numeric(input_str):
 def show_predict_page():
     st.title("Medium App Reviews Sentiment Analysis")
 
-    st.subheader("This is a sentiment analyzer of reviews of the [Medium](https://play.google.com/store/apps/details?id=com.medium.reader) app from Google Play Store")
+    st.subheader("This tool analyzes the sentiments expressed in reviews of the [Medium](https://play.google.com/store/apps/details?id=com.medium.reader) app on the Google Play Store.")
 
-    st.markdown("The dataset along with data dictionary can be found on [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/).")
+    st.markdown("Trained on data which is available on [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/).")
 
     text = st.text_input("Enter your review and press submit")
     ok = st.button("Submit")

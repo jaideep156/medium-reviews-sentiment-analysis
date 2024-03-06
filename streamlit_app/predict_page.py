@@ -1,10 +1,11 @@
 import streamlit as st
 import pickle
 import gzip
+import string
 import warnings
 warnings.filterwarnings("ignore")
 
-#loading the model_steps file where model, label encoder and TF-IDF Vectorizer are stored
+#loading the optimized_model_steps file where model, label encoder and TF-IDF Vectorizer are stored
 def load_model():
     with gzip.open(r'notebook/optimized_model_steps.pkl.gz', 'rb') as file:
         data = pickle.load(file)
@@ -21,6 +22,9 @@ def is_numeric(input_str):
         return True
     except ValueError:
         return False
+
+def contains_only_special_chars(text):
+    return all(char in string.punctuation for char in text)
 
 def show_predict_page():
     st.title("Medium App Reviews Sentiment Analysis")
@@ -39,6 +43,8 @@ def show_predict_page():
         # Check if input is numeric
         elif is_numeric(text):
             st.error("Please enter text instead of numeric value.")
+        elif contains_only_special_chars(text):
+            st.error("Please enter a review instead of only special characters.")
         else:
             input_data = vectorizer.transform([text])
             predictions = best_model.predict(input_data)

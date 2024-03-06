@@ -1,10 +1,10 @@
-## This file loads the best model from notebook/model_steps.pkl.gz and uses it to make predictions on new data
+## This file loads the best model from notebook/optimized_model_steps.pkl.gz and uses it to make predictions on new data
 ## Open notebook/sentiment-analysis.ipynb for a detailed walkthrough
 import pickle
 import gzip
 
 def load_model():
-    with gzip.open(r'notebook\model_steps.pkl.gz', 'rb') as file:
+    with gzip.open(r'notebook\optimized_model_steps.pkl.gz', 'rb') as file:
         data = pickle.load(file)
     return data
 data = load_model()

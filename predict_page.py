@@ -6,7 +6,7 @@ warnings.filterwarnings("ignore")
 
 #loading the model_steps file where model, label encoder and TF-IDF Vectorizer are stored
 def load_model():
-    with gzip.open(r'notebook/model_steps.pkl.gz', 'rb') as file:
+    with gzip.open(r'notebook/optimized_model_steps.pkl.gz', 'rb') as file:
         data = pickle.load(file)
     return data
 data = load_model()

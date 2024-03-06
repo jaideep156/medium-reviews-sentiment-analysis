@@ -21,7 +21,7 @@ def preparation(df):
     return vectorizer, label_encoder, X_train, y_train
 
 def model_building(X_train, y_train):
-    model = RandomForestClassifier(max_depth= None, min_samples_leaf= 1, min_samples_split=  5, n_estimators= 200) 
+    model = RandomForestClassifier(max_depth= None, min_samples_leaf= 1, min_samples_split= 5, n_estimators= 100) 
     #These are the best parameters according to hyperparameter tuning as seen in 'notebook/sentiment-analysis.ipynb'
     model.fit(X_train, y_train)
     return model

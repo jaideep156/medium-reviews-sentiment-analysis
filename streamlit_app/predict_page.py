@@ -31,9 +31,9 @@ def show_predict_page():
 
     st.subheader("This tool analyzes the sentiments expressed in reviews of the [Medium](https://play.google.com/store/apps/details?id=com.medium.reader) app on the Google Play Store.")
 
-    st.markdown("Trained on data which is available on [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/).")
+    st.write("Consider yourself as a user of the app. Write a review for it & this will predict its sentiment.")
 
-    text = st.text_input("Enter your review and press submit")
+    text = st.text_input("Enter your review and press submit.")
     ok = st.button("Submit")
 
     if ok:
@@ -53,3 +53,4 @@ def show_predict_page():
             st.success(f"The predicted sentiment of the review is {predicted_sentiments[0].lower()}.")
 
     st.write("##### You can find the full codebase & project specifics on my [GitHub](https://github.com/jaideep156/medium-reviews-sentiment-analysis).")
+    st.markdown("###### Trained on data which is available on [Kaggle](https://www.kaggle.com/datasets/raqhea/medium-app-reviews-from-google-play-store/).")
